@@ -1,0 +1,18 @@
+{
+	"name": "kerzekandles",
+	"version": "1.0.0",
+	"description": "backend API for kerzekandles",
+	"main": "app.js",
+	"scripts": {
+		"start": "nodemon app.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "TREagans",
+	"license": "ISC",
+	"dependencies": {
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"mongoose": "^5.11.15",
+		"morgan": "^1.10.0"
+	}
+}
