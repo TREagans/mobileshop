@@ -1,4 +1,5 @@
 const express = require('express');
+const { Mongoose } = require('mongoose');
 const morgan = require('morgan');
 const app = express();
 
@@ -6,6 +7,7 @@ require('dotenv').config();
 const port = process.env.PORT || 5000;
 const api = process.env.API_URL;
 const { connectDB } = require('./database');
+const Product = require('./models/product');
 
 // connect to DB
 connectDB();
@@ -14,26 +16,13 @@ connectDB();
 app.use(express.json());
 app.use(morgan('tiny'));
 
- 
-app.get(`${api}/products`, (req, res) => {
-  const product = {
-    id: 3,
-    name: 'ocean breeze',
-    image: 'oceanbreeze.jpg'
-  }
 
-  // sending product to the client
-  res.send(product);
-});
+// bring in routes
+const productRoutes = require('./routes/products');
 
 
-app.post(`${api}/products`, (req, res) => {
-  // creating new product from client data
-  const newProduct = req.body
 
-  // send product to the client
-  res.send(newProduct);
-});
+app.use(`${api}/products`, productRoutes);
 
 
 // cb function will run when server is successfully running
